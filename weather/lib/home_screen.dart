@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:buttons_flutter/buttons_flutter.dart';
+import 'package:weather/weather_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -69,7 +70,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               vertical: 20,
                             ),
                             onPressed: () {
-                              
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder:
+                                    (context) => WeatherScreen(cityname: city_name.text),
+                                ),
+                              );
                             },
                             child: const Text("SEARCH",
                                 style: TextStyle(
