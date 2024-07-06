@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:buttons_flutter/buttons_flutter.dart';
 import 'package:weather/weather_screen.dart';
+import 'package:weather/weathermodel.dart';
+
+import 'api.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -77,6 +80,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     (context) => WeatherScreen(cityname: city_name.text),
                                 ),
                               );
+                              // var cityname = city_name.text.toString();
+                              // _getWeatherData(cityname);
+
                             },
                             child: const Text("SEARCH",
                                 style: TextStyle(
@@ -86,10 +92,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           const SizedBox(height: 100),
-        
                         ],
                       )
-        
                     ],
                   ),
             )
@@ -100,3 +104,8 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+// _getWeatherData(String cityname) async{
+//   ApiResponse response = await WeatherApi().getCurrentWeather(cityname);
+//   print(response.toJson());
+// }
