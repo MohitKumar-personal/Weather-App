@@ -31,27 +31,29 @@ class _WeatherScreenState extends State<WeatherScreen> {
     double screenWidth = MediaQuery.of(context).size.width;
     double fabSize = screenWidth * 0.15;
 
-    return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            if (inProgress)
-              const CircularProgressIndicator()
-            else
-              _getWeatherDataWidget(),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              if (inProgress)
+                const CircularProgressIndicator()
+              else
+                _getWeatherDataWidget(),
+            ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _getWeatherData(widget.cityname),
-        child: Icon(Icons.refresh, size: fabSize * 0.4),
-        backgroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(fabSize / 2)
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => _getWeatherData(widget.cityname),
+          child: Icon(Icons.refresh, size: fabSize * 0.4),
+          backgroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(fabSize / 2)
+          ),
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 
@@ -65,9 +67,11 @@ class _WeatherScreenState extends State<WeatherScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _locationRow(screenWidth),
-              const SizedBox(height: 10),
-              _temperatureRow(screenWidth),
+              const SizedBox(height: 60),
               _weatherIcon(screenHeight),
+              const SizedBox(height: 30),
+              _temperatureRow(screenWidth),
+              const SizedBox(height: 30),
               _weatherDetailsCard(screenWidth)
             ],
           );
@@ -92,6 +96,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
   Row _temperatureRow(double screenWidth) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Padding(
